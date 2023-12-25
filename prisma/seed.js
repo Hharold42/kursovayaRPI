@@ -12,6 +12,7 @@ async function main() {
       fio: "Негиматжанов Марат Ромилевич",
       passport: 12332,
       phone: "+7999712712",
+      image: null,
     },
   });
   await prisma.user.upsert({
@@ -24,6 +25,7 @@ async function main() {
       fio: "Байден Джо Обамович",
       passport: 1334123,
       phone: "+71231231233",
+      image: null,
     },
   });
   await prisma.user.upsert({
@@ -36,6 +38,7 @@ async function main() {
       fio: "Красных Артем Алекович",
       passport: 3234123,
       phone: "+71231231233",
+      image: null,
     },
   });
   await prisma.user.upsert({
@@ -48,6 +51,7 @@ async function main() {
       fio: "Цурюпа Илья Староста",
       passport: 4234123,
       phone: "+71231231233",
+      image: null,
     },
   });
   await prisma.user.upsert({
@@ -60,6 +64,7 @@ async function main() {
       fio: "Прокофьева Нина Николаевна",
       passport: 5234123,
       phone: "+71231231233",
+      image: null,
     },
   });
 }
