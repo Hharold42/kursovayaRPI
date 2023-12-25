@@ -9,7 +9,9 @@ import {
 const Header = () => {
   return (
     <header className="w-full h-[90px] flxrow justify-between bg-[#2a72f8] text-white items-center px-8">
-      <div className=" font-extrabold text-2xl">ЛОГОТИП@</div>
+      <Link className=" font-extrabold text-2xl" href={"/"}>
+        ЛОГОТИП@
+      </Link>
       <div className=" text-xl">СВОЙ БАНК</div>
       <div className="flxrow [&>*]:flxrow [&>*>*]:mx-2">
         <Link

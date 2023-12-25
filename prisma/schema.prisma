@@ -15,22 +15,5 @@ model User {
   fio      String
   passport Int
   phone    String?
-
-  OperationFrom OperationFrom[]
-  OperationTo   OperationTo[]
-}
-
-model OperationFrom {
-  id     Int  @id @default(autoincrement())
-  from   User @relation(fields: [userId], references: [id])
-  userId Int
-  OperationTo OperationTo[]
-}
-
-model OperationTo {
-  id              Int           @id @default(autoincrement())
-  to              User          @relation(fields: [userId], references: [id])
-  userId          Int
-  from            OperationFrom @relation(fields: [operationFromId], references: [id])
-  operationFromId Int
+  image    String?
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import toBase64 from "@/utils/toBase64";
 import axios from "axios";
 import { useState } from "react";
 
@@ -9,10 +10,21 @@ const userAddRequest = async (data) => {
   );
 
   if (emailValid.data.valid) {
-    await axios.post("http://localhost:3000/api/user", data).then((res) => {
-      if (res.status === 200) alert("Успешно");
-      else alert("Ошибка при попытке создания пользователя ");
-    });
+    let fileBase64 = null;
+
+    if (data.file) {
+      fileBase64 = await toBase64(data.file);
+    }
+
+    await axios
+      .post("http://localhost:3000/api/user", {
+        ...data,
+        file: fileBase64,
+      })
+      .then((res) => {
+        if (res.status === 200) alert("Успешно");
+        else alert("Ошибка при попытке создания пользователя ");
+      });
   }
 };
 const UserAdd = ({ closeHandler = () => {} }) => {
@@ -21,6 +33,7 @@ const UserAdd = ({ closeHandler = () => {} }) => {
     email: "",
     phone: "",
     passport: "",
+    file: "",
   });
 
   const isFormDataValid = () => {
@@ -30,7 +43,11 @@ const UserAdd = ({ closeHandler = () => {} }) => {
   };
 
   const changeHandler = (paramName) => (e) => {
-    setFormData((prev) => ({ ...prev, [paramName]: e.target.value }));
+    if (paramName === "file") {
+      setFormData((prev) => ({ ...prev, file: e.target.files[0] }));
+    } else {
+      setFormData((prev) => ({ ...prev, [paramName]: e.target.value }));
+    }
   };
 
   return (
@@ -66,6 +83,14 @@ const UserAdd = ({ closeHandler = () => {} }) => {
         <input
           onChange={changeHandler("passport")}
           value={formData.passport}
+          className="input-def"
+        />
+      </div>
+      <div className="flxcol w-full my-2">
+        <label className="mb-1">Фото профиля</label>
+        <input
+          type="file"
+          onChange={changeHandler("file")}
           className="input-def"
         />
       </div>

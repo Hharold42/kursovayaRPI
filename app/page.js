@@ -4,6 +4,7 @@ import AddFunds from "@/components/AddFunds";
 import Card from "@/components/Card";
 import NewCredit from "@/components/NewCredit";
 import PopUpWrapper from "@/components/PopUpWrapper";
+import RemoveFunds from "@/components/RemoveFunds";
 import UserAdd from "@/components/UserAdd";
 import UserUpdate from "@/components/UserUpdate";
 import { useState } from "react";
@@ -11,6 +12,7 @@ import {
   FaCreditCard,
   FaMoneyBillWave,
   FaUserGear,
+  FaUserMinus,
   FaUserPlus,
 } from "react-icons/fa6";
 
@@ -54,6 +56,15 @@ export default function Home() {
         }
       >
         <FaCreditCard size={40} className="mb-8" />
+      </Card>
+      <Card
+        text="Снять деньги"
+        subtext="Снять сумму денег со счета клиента"
+        popupHandler={() =>
+          setCurrentModal(<RemoveFunds closeHandler={setCurrentModal} />)
+        }
+      >
+        <FaUserMinus size={40} className="mb-8" />
       </Card>
       {currentModal && (
         <PopUpWrapper controll={setCurrentModal}>{currentModal}</PopUpWrapper>

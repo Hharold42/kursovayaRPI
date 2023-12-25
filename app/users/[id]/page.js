@@ -9,12 +9,10 @@ const page = ({ params: { id } }) => {
 
   useLayoutEffect(() => {
     async function fetchUser(id) {
-      console.log(id);
       await axios
         .get(`http://localhost:3000/api/user?id=${id}`)
         .then((res) => res.data)
         .then((data) => {
-          console.log(data);
           setUserData(data);
         });
     }
@@ -25,6 +23,12 @@ const page = ({ params: { id } }) => {
   return (
     <div className=" w-full flxrow px-8 py-4">
       <div className="w-full flxcol mx-4">
+        {userData.image && (
+          <img
+            src={userData.image}
+            className="w-[100px] h-[100px] rounded-full my-4 p-1 border border-[#2a72f8]"
+          ></img>
+        )}
         <div className="flxcool mb-4 w-full p-2 border-black border-solid border-2 rounded-lg">
           <label className=" font-bold text-lg">Фамилия Имя Отчество:</label>
           <div className="w-full bg-[#d1d1d1]  px-4 py-2 rounded-md">

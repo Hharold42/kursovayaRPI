@@ -27,7 +27,7 @@ const page = () => {
           Таблица пользователей
         </span>
       </div>
-      <div>
+      <div className="mx-4 my-2">
         <table className="w-full border-2 border-solid border-black border-collapse">
           <thead>
             <tr className="user-table__row [&>*]:user-table__cell">
@@ -48,7 +48,12 @@ const page = () => {
                 >
                   <td>{user.id}</td>
                   <td>
-                    <Link href={`/users/${user.id}`}>{user.fio}</Link>
+                    <Link
+                      href={`/users/${user.id}`}
+                      className="text-blue-400 hover:text-blue-500"
+                    >
+                      {user.fio}
+                    </Link>
                   </td>
                   <td>{user.phone}</td>
                   <td>{user.email}</td>

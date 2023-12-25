@@ -56,6 +56,27 @@ export default async function hander(req, res) {
         });
 
         return res.status(200).json(data);
+      } else if (req.query.process === "rf") {
+        const { user, amount } = req.body;
+
+        const userData = await prisma.user.findUnique({
+          where: {
+            id: Number(user),
+          },
+        });
+
+        const newValue = userData.balance - Number(amount);
+
+        const data = await prisma.user.update({
+          where: {
+            id: Number(user),
+          },
+          data: {
+            balance: newValue,
+          },
+        });
+
+        return res.status(200).json(data);
       } else if (req.query.process === "nc") {
         const { user, amount } = req.body;
 
@@ -85,8 +106,7 @@ export default async function hander(req, res) {
     }
   } else if (req.method === "POST") {
     try {
-      const { email, fio, phone, passport } = req.body;
-      console.log(email, fio, phone, passport);
+      const { email, fio, phone, passport, file } = req.body;
 
       const data = await prisma.user.upsert({
         where: {
@@ -100,6 +120,7 @@ export default async function hander(req, res) {
           email: String(email),
           balance: 0,
           debt: 0,
+          image: file,
         },
       });
 
