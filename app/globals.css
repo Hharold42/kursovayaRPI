@@ -2,26 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+@layer components {
+  .flxrow {
+    @apply flex flex-row;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  .flxcol {
+    @apply flex flex-col;
+  }
+
+  .def-transition {
+    @apply transition-all duration-300 hover:transition-all hover:duration-300;
+  }
+
+  .input-def {
+    @apply border-2 border-solid rounded-md border-black w-full px-4 py-2;
+  }
+
+  .user-table__row {
+    @apply border-y-2 border-solid border-black;
+  }
+
+  .user-table__cell {
+    @apply border-x-2 border-solid border-black px-4 py-2 text-center align-middle;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
 }
